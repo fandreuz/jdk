@@ -37,7 +37,6 @@
 #include "jfr/support/methodtracer/jfrMethodTracer.hpp"
 #include "jfr/support/methodtracer/jfrTraceTagging.hpp"
 #include "oops/instanceKlass.inline.hpp"
-#include "oops/klass.hpp"
 #include "runtime/java.hpp"
 #include "runtime/javaThread.hpp"
 

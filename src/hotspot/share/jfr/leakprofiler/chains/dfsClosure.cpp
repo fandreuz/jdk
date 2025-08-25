@@ -28,13 +28,11 @@
 #include "jfr/leakprofiler/chains/jfrbitset.hpp"
 #include "jfr/leakprofiler/chains/rootSetClosure.hpp"
 #include "jfr/leakprofiler/utilities/granularTimer.hpp"
-#include "jfr/leakprofiler/utilities/rootType.hpp"
 #include "jfr/leakprofiler/utilities/unifiedOopRef.inline.hpp"
 #include "memory/iterator.inline.hpp"
 #include "memory/resourceArea.hpp"
 #include "oops/access.inline.hpp"
 #include "oops/oop.inline.hpp"
-#include "utilities/align.hpp"
 
 UnifiedOopRef DFSClosure::_reference_stack[max_dfs_depth];
 

@@ -27,8 +27,6 @@
 #include "jfr/recorder/storage/jfrStorage.hpp"
 #include "jfr/support/jfrFlush.hpp"
 #include "jfr/support/jfrThreadLocal.hpp"
-#include "runtime/javaThread.hpp"
-#include "utilities/debug.hpp"
 
 JfrFlush::JfrFlush(JfrStorage::BufferPtr old, size_t used, size_t requested, Thread* thread) :
   _result(JfrStorage::flush(old, used, requested, true, thread)) {

@@ -42,7 +42,6 @@
 #include "utilities/exceptions.hpp"
 #include "utilities/globalDefinitions.hpp"
 #include "utilities/growableArray.hpp"
-#include "utilities/macros.hpp"
 
 static void log_pending_exception(oop throwable) {
   assert(throwable != nullptr, "invariant");

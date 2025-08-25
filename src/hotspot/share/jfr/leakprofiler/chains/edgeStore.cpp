@@ -27,7 +27,6 @@
 #include "jfr/leakprofiler/sampling/objectSample.hpp"
 #include "jfr/leakprofiler/utilities/unifiedOopRef.inline.hpp"
 #include "oops/oop.inline.hpp"
-#include "runtime/safepoint.hpp"
 
 StoredEdge::StoredEdge(const Edge* parent, UnifiedOopRef reference) : Edge(parent, reference), _gc_root_id(0), _skip_length(0) {}
 

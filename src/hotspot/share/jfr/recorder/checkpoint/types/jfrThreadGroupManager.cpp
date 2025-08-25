@@ -31,7 +31,6 @@
 #include "memory/resourceArea.hpp"
 #include "runtime/handles.inline.hpp"
 #include "runtime/jniHandles.inline.hpp"
-#include "runtime/safepoint.hpp"
 #include "runtime/semaphore.hpp"
 #include "runtime/thread.inline.hpp"
 #include "utilities/growableArray.hpp"

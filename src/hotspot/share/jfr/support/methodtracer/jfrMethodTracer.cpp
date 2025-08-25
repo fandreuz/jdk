@@ -45,13 +45,10 @@
 #include "logging/log.hpp"
 #include "memory/resourceArea.hpp"
 #include "oops/instanceKlass.hpp"
-#include "oops/method.hpp"
 #include "runtime/interfaceSupport.inline.hpp"
 #include "runtime/mutexLocker.hpp"
-#include "runtime/safepoint.hpp"
 #include "utilities/exceptions.hpp"
 #include "utilities/growableArray.hpp"
-#include "utilities/resizableHashTable.hpp"
 
 ModuleEntry*                         JfrMethodTracer::_jdk_jfr_module = nullptr;
 GrowableArray<JfrInstrumentedClass>* JfrMethodTracer::_instrumented_classes = nullptr;

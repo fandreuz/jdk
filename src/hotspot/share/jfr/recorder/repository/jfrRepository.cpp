@@ -29,10 +29,8 @@
 #include "jfr/recorder/repository/jfrEmergencyDump.hpp"
 #include "jfr/recorder/repository/jfrRepository.hpp"
 #include "jfr/recorder/service/jfrPostBox.hpp"
-#include "logging/log.hpp"
 #include "memory/resourceArea.hpp"
 #include "runtime/javaThread.hpp"
-#include "runtime/mutex.hpp"
 #include "runtime/os.hpp"
 
 static JfrRepository* _instance = nullptr;

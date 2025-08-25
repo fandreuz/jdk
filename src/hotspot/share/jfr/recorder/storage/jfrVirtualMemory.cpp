@@ -26,7 +26,6 @@
 #include "memory/memoryReserver.hpp"
 #include "memory/virtualspace.hpp"
 #include "nmt/memTracker.hpp"
-#include "runtime/globals.hpp"
 #include "runtime/os.hpp"
 #include "utilities/globalDefinitions.hpp"
 

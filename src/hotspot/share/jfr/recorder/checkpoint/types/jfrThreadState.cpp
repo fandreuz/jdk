@@ -28,7 +28,6 @@
 #include "jfr/support/jfrThreadLocal.hpp"
 #include "jvmtifiles/jvmti.h"
 #include "runtime/javaThread.hpp"
-#include "runtime/osThread.hpp"
 
 struct jvmti_thread_state {
   u8 id;

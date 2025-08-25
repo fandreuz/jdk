@@ -24,7 +24,6 @@
 
 #include "classfile/javaClasses.inline.hpp"
 #include "jfr/leakprofiler/chains/edge.hpp"
-#include "jfr/leakprofiler/chains/edgeStore.hpp"
 #include "jfr/leakprofiler/chains/edgeUtils.hpp"
 #include "jfr/leakprofiler/utilities/unifiedOopRef.inline.hpp"
 #include "oops/fieldStreams.inline.hpp"

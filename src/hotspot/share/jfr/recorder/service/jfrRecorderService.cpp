@@ -22,7 +22,6 @@
  *
  */
 
-#include "jfr/jni/jfrJavaSupport.hpp"
 #include "jfr/leakprofiler/checkpoint/objectSampleCheckpoint.hpp"
 #include "jfr/leakprofiler/leakProfiler.hpp"
 #include "jfr/leakprofiler/sampling/objectSampler.hpp"
@@ -39,7 +38,6 @@
 #include "jfr/recorder/storage/jfrStorageControl.hpp"
 #include "jfr/recorder/stringpool/jfrStringPool.hpp"
 #include "jfr/support/jfrDeprecationManager.hpp"
-#include "jfr/utilities/jfrAllocation.hpp"
 #include "jfr/utilities/jfrThreadIterator.hpp"
 #include "jfr/utilities/jfrTime.hpp"
 #include "jfr/utilities/jfrTypes.hpp"
@@ -51,8 +49,6 @@
 #include "runtime/javaThread.hpp"
 #include "runtime/mutexLocker.hpp"
 #include "runtime/os.hpp"
-#include "runtime/safepoint.hpp"
-#include "runtime/vmOperations.hpp"
 #include "runtime/vmThread.hpp"
 
 // incremented on each flushpoint

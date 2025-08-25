@@ -25,8 +25,6 @@
 #include "jfr/recorder/checkpoint/types/traceid/jfrTraceIdEpoch.hpp"
 #include "jfr/support/jfrThreadId.inline.hpp"
 #include "runtime/atomic.hpp"
-#include "runtime/mutex.hpp"
-#include "runtime/safepoint.hpp"
 
 /*
  * The epoch generation is the range [1-32767].

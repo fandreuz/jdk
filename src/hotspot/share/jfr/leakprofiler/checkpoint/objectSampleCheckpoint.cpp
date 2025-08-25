@@ -23,7 +23,6 @@
  */
 
 #include "jfr/jfrEvents.hpp"
-#include "jfr/jni/jfrJavaSupport.hpp"
 #include "jfr/leakprofiler/chains/edgeStore.hpp"
 #include "jfr/leakprofiler/chains/objectSampleMarker.hpp"
 #include "jfr/leakprofiler/checkpoint/objectSampleCheckpoint.hpp"
@@ -39,14 +38,12 @@
 #include "jfr/support/jfrKlassUnloading.hpp"
 #include "jfr/support/jfrMethodLookup.hpp"
 #include "jfr/utilities/jfrHashtable.hpp"
-#include "jfr/utilities/jfrRelation.hpp"
 #include "jfr/utilities/jfrSet.hpp"
 #include "memory/resourceArea.inline.hpp"
 #include "oops/instanceKlass.inline.hpp"
 #include "runtime/interfaceSupport.inline.hpp"
 #include "runtime/javaThread.hpp"
 #include "runtime/mutexLocker.hpp"
-#include "runtime/safepoint.hpp"
 
 class ThreadIdExclusiveAccess : public StackObj {
  private:

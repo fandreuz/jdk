@@ -40,7 +40,6 @@
 #include "jfr/support/jfrAnnotationIterator.hpp"
 #include "jfr/support/jfrJdkJfrEvent.hpp"
 #include "jfr/writers/jfrBigEndianWriter.hpp"
-#include "jvm.h"
 #include "logging/log.hpp"
 #include "memory/allocation.inline.hpp"
 #include "memory/resourceArea.hpp"

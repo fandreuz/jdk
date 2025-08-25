@@ -25,7 +25,6 @@
 #include "jfr/jni/jfrJavaSupport.hpp"
 #include "jfr/utilities/jfrJavaLog.hpp"
 #include "jfr/utilities/jfrLogTagSets.hpp"
-#include "logging/log.hpp"
 #include "logging/logConfiguration.hpp"
 #include "logging/logMessage.hpp"
 #include "memory/resourceArea.hpp"

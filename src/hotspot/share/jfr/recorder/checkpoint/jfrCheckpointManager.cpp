@@ -23,7 +23,6 @@
  */
 
 #include "classfile/javaClasses.inline.hpp"
-#include "jfr/jni/jfrJavaSupport.hpp"
 #include "jfr/leakprofiler/checkpoint/objectSampleCheckpoint.hpp"
 #include "jfr/leakprofiler/leakProfiler.hpp"
 #include "jfr/recorder/checkpoint/jfrCheckpointManager.hpp"
@@ -33,29 +32,22 @@
 #include "jfr/recorder/checkpoint/types/traceid/jfrTraceIdEpoch.hpp"
 #include "jfr/recorder/jfrRecorder.hpp"
 #include "jfr/recorder/repository/jfrChunkWriter.hpp"
-#include "jfr/recorder/service/jfrOptionSet.hpp"
 #include "jfr/recorder/storage/jfrEpochStorage.inline.hpp"
 #include "jfr/recorder/storage/jfrMemorySpace.inline.hpp"
 #include "jfr/recorder/storage/jfrReferenceCountedStorage.hpp"
 #include "jfr/recorder/storage/jfrStorageUtils.inline.hpp"
 #include "jfr/recorder/stringpool/jfrStringPool.hpp"
 #include "jfr/support/jfrDeprecationManager.hpp"
-#include "jfr/support/jfrKlassUnloading.hpp"
 #include "jfr/support/jfrThreadLocal.hpp"
 #include "jfr/utilities/jfrBigEndian.hpp"
-#include "jfr/utilities/jfrIterator.hpp"
 #include "jfr/utilities/jfrLinkedList.inline.hpp"
 #include "jfr/utilities/jfrSignal.hpp"
 #include "jfr/utilities/jfrThreadIterator.hpp"
 #include "jfr/writers/jfrJavaEventWriter.hpp"
-#include "logging/log.hpp"
 #include "memory/iterator.hpp"
 #include "memory/resourceArea.hpp"
-#include "runtime/atomic.hpp"
 #include "runtime/handles.inline.hpp"
 #include "runtime/interfaceSupport.inline.hpp"
-#include "runtime/mutex.hpp"
-#include "runtime/safepoint.hpp"
 
 typedef JfrCheckpointManager::BufferPtr BufferPtr;
 typedef JfrCheckpointManager::ConstBufferPtr ConstBufferPtr;

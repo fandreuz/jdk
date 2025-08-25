@@ -30,7 +30,6 @@
 #include "jfr/utilities/jfrEpochQueue.inline.hpp"
 #include "jfr/utilities/jfrTypes.hpp"
 #include "oops/compressedKlass.inline.hpp"
-#include "utilities/macros.hpp"
 
 #ifdef VM_LITTLE_ENDIAN
 static const u1      UNLOADED_BIT = 1;

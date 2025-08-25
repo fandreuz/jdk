@@ -27,9 +27,7 @@
 #include "jfr/leakprofiler/sampling/objectSampler.hpp"
 #include "jfr/leakprofiler/startOperation.hpp"
 #include "jfr/leakprofiler/stopOperation.hpp"
-#include "jfr/recorder/service/jfrOptionSet.hpp"
 #include "logging/log.hpp"
-#include "memory/iterator.hpp"
 #include "runtime/javaThread.inline.hpp"
 #include "runtime/vmThread.hpp"
 

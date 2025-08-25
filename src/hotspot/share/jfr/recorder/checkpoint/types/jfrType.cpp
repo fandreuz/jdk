@@ -28,7 +28,6 @@
 #include "compiler/compilerDefinitions.hpp"
 #include "gc/shared/gcCause.hpp"
 #include "gc/shared/gcName.hpp"
-#include "gc/shared/gcTrace.hpp"
 #include "gc/shared/gcWhen.hpp"
 #include "jfr/leakprofiler/leakProfiler.hpp"
 #include "jfr/recorder/checkpoint/jfrCheckpointWriter.hpp"
@@ -49,13 +48,8 @@
 #include "runtime/flags/jvmFlag.hpp"
 #include "runtime/javaThread.hpp"
 #include "runtime/mutexLocker.hpp"
-#include "runtime/osThread.hpp"
-#include "runtime/safepoint.hpp"
 #include "runtime/synchronizer.hpp"
-#include "runtime/vmOperations.hpp"
 #ifdef COMPILER2
-#include "opto/compile.hpp"
-#include "opto/node.hpp"
 #endif
 
 // Requires a ResourceMark for get_thread_name/as_utf8

@@ -27,7 +27,6 @@
 #include "jfr/recorder/repository/jfrChunkWriter.hpp"
 #include "jfr/recorder/stacktrace/jfrStackTrace.hpp"
 #include "jfr/recorder/stacktrace/jfrVframeStream.inline.hpp"
-#include "jfr/recorder/storage/jfrBuffer.hpp"
 #include "jfr/support/jfrThreadLocal.hpp"
 #include "jfrStackFilter.hpp"
 #include "jfrStackFilterRegistry.hpp"
@@ -38,7 +37,6 @@
 #include "runtime/continuationEntry.inline.hpp"
 #include "runtime/handles.inline.hpp"
 #include "runtime/vframe.inline.hpp"
-#include "utilities/growableArray.hpp"
 
 static inline void copy_frames(JfrStackFrames* lhs_frames, const JfrStackFrames* rhs_frames) {
   assert(lhs_frames != nullptr, "invariant");

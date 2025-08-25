@@ -28,7 +28,6 @@
 #include "classfile/vmSymbols.hpp"
 #include "jfr/recorder/checkpoint/types/traceid/jfrTraceIdEpoch.hpp"
 #include "jfr/recorder/repository/jfrChunkWriter.hpp"
-#include "jfr/recorder/service/jfrOptionSet.hpp"
 #include "jfr/recorder/storage/jfrMemorySpace.inline.hpp"
 #include "jfr/recorder/storage/jfrStorageUtils.inline.hpp"
 #include "jfr/recorder/stringpool/jfrStringPool.hpp"
@@ -36,10 +35,7 @@
 #include "jfr/utilities/jfrLinkedList.inline.hpp"
 #include "jfr/utilities/jfrSignal.hpp"
 #include "jfr/utilities/jfrTypes.hpp"
-#include "logging/log.hpp"
-#include "runtime/atomic.hpp"
 #include "runtime/javaThread.hpp"
-#include "runtime/safepoint.hpp"
 
 static int generation_offset = invalid_offset;
 static jobject string_pool = nullptr;

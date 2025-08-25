@@ -31,10 +31,8 @@
 #include "jfr/leakprofiler/utilities/unifiedOopRef.inline.hpp"
 #include "logging/log.hpp"
 #include "memory/iterator.inline.hpp"
-#include "memory/resourceArea.hpp"
 #include "oops/access.inline.hpp"
 #include "oops/oop.inline.hpp"
-#include "utilities/align.hpp"
 
 BFSClosure::BFSClosure(EdgeQueue* edge_queue, EdgeStore* edge_store, JFRBitSet* mark_bits) :
   _edge_queue(edge_queue),

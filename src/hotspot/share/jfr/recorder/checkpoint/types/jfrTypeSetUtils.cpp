@@ -23,7 +23,6 @@
  */
 
 #include "jfr/recorder/checkpoint/types/jfrTypeSetUtils.hpp"
-#include "jfr/utilities/jfrPredicate.hpp"
 #include "jfr/utilities/jfrRelation.hpp"
 #include "oops/instanceKlass.hpp"
 #include "oops/oop.inline.hpp"

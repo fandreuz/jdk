@@ -23,7 +23,6 @@
  */
 
 #include "jfr/recorder/service/jfrMemorySizer.hpp"
-#include "logging/log.hpp"
 #include "runtime/os.hpp"
 
 const julong MAX_ADJUSTED_GLOBAL_BUFFER_SIZE = 1 * M;

@@ -30,7 +30,6 @@
 #include "jfr/recorder/checkpoint/types/jfrTypeManager.hpp"
 #include "jfr/recorder/jfrRecorder.hpp"
 #include "jfr/support/jfrThreadLocal.hpp"
-#include "jfr/utilities/jfrIterator.hpp"
 #include "jfr/utilities/jfrLinkedList.inline.hpp"
 #include "memory/resourceArea.hpp"
 #include "nmt/memTracker.hpp"

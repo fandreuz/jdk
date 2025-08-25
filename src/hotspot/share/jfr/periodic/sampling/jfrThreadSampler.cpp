@@ -28,21 +28,16 @@
 #include "jfr/periodic/sampling/jfrThreadSampler.hpp"
 #include "jfr/periodic/sampling/jfrThreadSampling.hpp"
 #include "jfr/recorder/service/jfrOptionSet.hpp"
-#include "jfr/utilities/jfrTime.hpp"
 #include "jfr/utilities/jfrTryLock.hpp"
-#include "jfr/utilities/jfrTypes.hpp"
 #include "logging/log.hpp"
 #include "runtime/atomic.hpp"
-#include "runtime/globals.hpp"
 #include "runtime/javaThread.inline.hpp"
 #include "runtime/mutexLocker.hpp"
-#include "runtime/orderAccess.hpp"
 #include "runtime/os.hpp"
 #include "runtime/safepointMechanism.inline.hpp"
 #include "runtime/semaphore.hpp"
 #include "runtime/suspendedThreadTask.hpp"
 #include "runtime/threadSMR.inline.hpp"
-#include "utilities/systemMemoryBarrier.hpp"
 
 // The JfrSamplerThread suspends, if necessary, JavaThreads for sampling.
 // It creates a sample description of the top Java frame, called a Jfr Sample Request.

@@ -29,11 +29,9 @@
 #include "jfr/recorder/checkpoint/jfrCheckpointManager.hpp"
 #include "jfr/recorder/service/jfrPostBox.hpp"
 #include "jfr/recorder/service/jfrRecorderThread.hpp"
-#include "memory/resourceArea.hpp"
 #include "memory/universe.hpp"
 #include "runtime/handles.inline.hpp"
 #include "runtime/javaThread.hpp"
-#include "utilities/macros.hpp"
 #include "utilities/preserveException.hpp"
 
 static Thread* start_thread(instanceHandle thread_oop, ThreadFunction proc, TRAPS) {

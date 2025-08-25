@@ -25,11 +25,9 @@
 #include "jfr/metadata/jfrSerializer.hpp"
 #include "jfr/recorder/checkpoint/jfrCheckpointWriter.hpp"
 #include "jfr/recorder/repository/jfrChunkWriter.hpp"
-#include "jfr/recorder/service/jfrOptionSet.hpp"
 #include "jfr/recorder/stacktrace/jfrStackTraceRepository.hpp"
 #include "jfr/support/jfrThreadLocal.hpp"
 #include "runtime/mutexLocker.hpp"
-#include "runtime/safepoint.hpp"
 
 /*
  * There are two separate repository instances.

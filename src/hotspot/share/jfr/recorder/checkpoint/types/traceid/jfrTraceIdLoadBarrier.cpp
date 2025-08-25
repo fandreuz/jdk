@@ -27,7 +27,6 @@
 #include "jfr/recorder/service/jfrOptionSet.hpp"
 #include "jfr/support/jfrThreadLocal.hpp"
 #include "jfr/utilities/jfrEpochQueue.inline.hpp"
-#include "runtime/javaThread.hpp"
 #include "runtime/mutexLocker.hpp"
 #include "utilities/powerOfTwo.hpp"
 

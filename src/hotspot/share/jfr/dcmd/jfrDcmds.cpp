@@ -23,7 +23,6 @@
  */
 
 #include "classfile/javaClasses.inline.hpp"
-#include "classfile/vmSymbols.hpp"
 #include "jfr/dcmd/jfrDcmds.hpp"
 #include "jfr/jfr.hpp"
 #include "jfr/jni/jfrJavaSupport.hpp"
@@ -37,7 +36,6 @@
 #include "memory/resourceArea.hpp"
 #include "oops/objArrayOop.inline.hpp"
 #include "oops/oop.inline.hpp"
-#include "oops/symbol.hpp"
 #include "runtime/handles.inline.hpp"
 #include "runtime/jniHandles.hpp"
 #include "services/diagnosticArgument.hpp"

@@ -23,7 +23,6 @@
  */
 
 #include "jfr/jfrEvents.hpp"
-#include "jfr/jni/jfrJavaSupport.hpp"
 #include "jfr/recorder/checkpoint/jfrCheckpointManager.hpp"
 #include "jfr/recorder/jfrRecorder.hpp"
 #include "jfr/recorder/repository/jfrChunkWriter.hpp"
@@ -34,7 +33,6 @@
 #include "jfr/recorder/storage/jfrStorage.hpp"
 #include "jfr/recorder/storage/jfrStorageControl.hpp"
 #include "jfr/recorder/storage/jfrStorageUtils.inline.hpp"
-#include "jfr/utilities/jfrIterator.hpp"
 #include "jfr/utilities/jfrLinkedList.inline.hpp"
 #include "jfr/utilities/jfrTime.hpp"
 #include "jfr/utilities/jfrTryLock.hpp"
@@ -43,7 +41,6 @@
 #include "runtime/interfaceSupport.inline.hpp"
 #include "runtime/javaThread.hpp"
 #include "runtime/mutexLocker.hpp"
-#include "runtime/safepoint.hpp"
 
 typedef JfrStorage::BufferPtr BufferPtr;
 

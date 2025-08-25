@@ -32,14 +32,12 @@
 #include "jfr/writers/jfrJavaEventWriter.hpp"
 #include "jni.h"
 #include "memory/iterator.hpp"
-#include "oops/instanceKlass.hpp"
 #include "oops/oop.inline.hpp"
 #include "runtime/fieldDescriptor.inline.hpp"
 #include "runtime/globals.hpp"
 #include "runtime/handles.inline.hpp"
 #include "runtime/interfaceSupport.inline.hpp"
 #include "runtime/jniHandles.inline.hpp"
-#include "runtime/safepoint.hpp"
 #include "runtime/threads.hpp"
 
 static int start_pos_offset = invalid_offset;

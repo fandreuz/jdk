@@ -24,13 +24,11 @@
 
 #include "utilities/macros.hpp"
 #if INCLUDE_MANAGEMENT
-#include "classfile/classLoaderDataGraph.hpp"
 #include "jfr/jfrEvents.hpp"
 #include "jfr/periodic/jfrFinalizerStatisticsEvent.hpp"
 #include "jfr/support/jfrSymbolTable.hpp"
 #include "jfr/utilities/jfrTime.hpp"
 #include "jfr/utilities/jfrTypes.hpp"
-#include "runtime/javaThread.hpp"
 #include "runtime/mutexLocker.hpp"
 #include "services/finalizerService.hpp"
 

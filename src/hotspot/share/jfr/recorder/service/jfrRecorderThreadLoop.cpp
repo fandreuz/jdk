@@ -22,7 +22,6 @@
  *
  */
 
-#include "jfr/jni/jfrJavaSupport.hpp"
 #include "jfr/recorder/jfrRecorder.hpp"
 #include "jfr/recorder/service/jfrPostBox.hpp"
 #include "jfr/recorder/service/jfrRecorderService.hpp"

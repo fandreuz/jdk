@@ -25,6 +25,8 @@
 #ifndef SHARE_JFR_RECORDER_CHECKPOINT_TYPES_TRACEID_JFRTRACEIDMACROS_HPP
 #define SHARE_JFR_RECORDER_CHECKPOINT_TYPES_TRACEID_JFRTRACEIDMACROS_HPP
 
+#include "jfrTraceIdEpoch.hpp"
+
 /**
  *
  * If a traceid is used, depending on epoch, either the first or the second bit is tagged.

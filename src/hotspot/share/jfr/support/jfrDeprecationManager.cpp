@@ -24,7 +24,6 @@
 
 #include "classfile/moduleEntry.hpp"
 #include "interpreter/bytecodes.hpp"
-#include "jfr/jni/jfrJavaSupport.hpp"
 #include "jfr/recorder/checkpoint/jfrCheckpointWriter.hpp"
 #include "jfr/recorder/checkpoint/types/traceid/jfrTraceId.inline.hpp"
 #include "jfr/recorder/jfrEventSetting.inline.hpp"

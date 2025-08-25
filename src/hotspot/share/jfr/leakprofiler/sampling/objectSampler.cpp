@@ -44,7 +44,6 @@
 #include "runtime/atomic.hpp"
 #include "runtime/javaThread.hpp"
 #include "runtime/orderAccess.hpp"
-#include "runtime/safepoint.hpp"
 
 // Timestamp of when the gc last processed the set of sampled objects.
 // Atomic access to prevent word tearing on 32-bit platforms.

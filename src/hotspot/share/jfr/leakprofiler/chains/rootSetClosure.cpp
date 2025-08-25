@@ -23,22 +23,18 @@
  */
 
 #include "classfile/classLoaderDataGraph.hpp"
-#include "classfile/stringTable.hpp"
 #include "gc/shared/oopStorage.inline.hpp"
 #include "gc/shared/oopStorageSet.inline.hpp"
 #include "gc/shared/strongRootsScope.hpp"
 #include "jfr/leakprofiler/chains/bfsClosure.hpp"
 #include "jfr/leakprofiler/chains/dfsClosure.hpp"
-#include "jfr/leakprofiler/chains/edgeQueue.hpp"
 #include "jfr/leakprofiler/chains/rootSetClosure.hpp"
 #include "jfr/leakprofiler/utilities/unifiedOopRef.inline.hpp"
 #include "oops/access.inline.hpp"
 #include "oops/oop.inline.hpp"
 #include "runtime/javaThread.hpp"
-#include "runtime/synchronizer.hpp"
 #include "runtime/threads.hpp"
 #include "services/management.hpp"
-#include "utilities/align.hpp"
 
 template <typename Delegate>
 RootSetClosure<Delegate>::RootSetClosure(Delegate* delegate) : _delegate(delegate) {}

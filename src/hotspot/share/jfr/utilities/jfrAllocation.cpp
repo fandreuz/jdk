@@ -27,10 +27,8 @@
 #include "logging/log.hpp"
 #include "memory/allocation.inline.hpp"
 #include "nmt/memTracker.hpp"
-#include "runtime/atomic.hpp"
 #include "utilities/debug.hpp"
 #include "utilities/macros.hpp"
-#include "utilities/nativeCallStack.hpp"
 
 #ifdef ASSERT
 static jlong atomic_add_jlong(jlong value, jlong volatile* const dest) {

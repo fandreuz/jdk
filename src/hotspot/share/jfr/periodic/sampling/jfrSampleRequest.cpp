@@ -21,7 +21,6 @@
  * questions.
  *
  */
-#include "asm/codeBuffer.hpp"
 #include "interpreter/interpreter.hpp"
 #include "jfr/periodic/sampling/jfrSampleRequest.hpp"
 #include "jfr/utilities/jfrTime.hpp"

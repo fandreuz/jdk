@@ -26,7 +26,6 @@
 #include "jfr/periodic/jfrNativeMemoryEvent.hpp"
 #include "nmt/memTracker.hpp"
 #include "nmt/nmtUsage.hpp"
-#include "utilities/globalDefinitions.hpp"
 #include "utilities/ticks.hpp"
 
 static NMTUsage* get_usage(const Ticks& timestamp) {

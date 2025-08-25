@@ -23,13 +23,11 @@
  */
 
 #include "jfr/recorder/checkpoint/types/traceid/jfrTraceId.inline.hpp"
-#include "jfr/recorder/checkpoint/types/traceid/jfrTraceIdEpoch.hpp"
 #include "jfr/support/methodtracer/jfrInstrumentedClass.hpp"
 #include "jfr/support/methodtracer/jfrMethodTracer.hpp"
 #include "jfr/support/methodtracer/jfrTraceTagging.hpp"
 #include "oops/instanceKlass.hpp"
 #include "oops/method.hpp"
-#include "runtime/safepoint.hpp"
 #include "utilities/growableArray.hpp"
 
 void JfrTraceTagging::tag_dynamic(const InstanceKlass* ik) {
