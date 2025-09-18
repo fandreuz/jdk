@@ -26,7 +26,6 @@
 #ifndef CPU_PPC_REGISTER_PPC_HPP
 #define CPU_PPC_REGISTER_PPC_HPP
 
-#include "asm/register.hpp"
 #include "utilities/count_trailing_zeros.hpp"
 
 // forward declaration

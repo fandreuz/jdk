@@ -26,7 +26,6 @@
 #ifndef CPU_RISCV_REGISTER_RISCV_HPP
 #define CPU_RISCV_REGISTER_RISCV_HPP
 
-#include "asm/register.hpp"
 #include "utilities/checkedCast.hpp"
 #include "utilities/powerOfTwo.hpp"
 

@@ -25,7 +25,6 @@
 #ifndef CPU_X86_REGISTER_X86_HPP
 #define CPU_X86_REGISTER_X86_HPP
 
-#include "asm/register.hpp"
 #include "runtime/globals.hpp"
 #include "utilities/checkedCast.hpp"
 #include "utilities/count_leading_zeros.hpp"

@@ -26,7 +26,6 @@
 #ifndef CPU_S390_REGISTER_S390_HPP
 #define CPU_S390_REGISTER_S390_HPP
 
-#include "asm/register.hpp"
 #include "runtime/vm_version.hpp"
 
 #define NOREG_ENCODING -1

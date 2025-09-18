@@ -26,7 +26,6 @@
 #ifndef CPU_PPC_ASSEMBLER_PPC_HPP
 #define CPU_PPC_ASSEMBLER_PPC_HPP
 
-#include "asm/assembler.hpp"
 #include "asm/register.hpp"
 
 // Address is an abstraction used to represent a memory location

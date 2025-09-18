@@ -26,7 +26,6 @@
 #ifndef CPU_ZERO_REGISTER_ZERO_HPP
 #define CPU_ZERO_REGISTER_ZERO_HPP
 
-#include "asm/register.hpp"
 #include "runtime/vm_version.hpp"
 
 class VMRegImpl;
