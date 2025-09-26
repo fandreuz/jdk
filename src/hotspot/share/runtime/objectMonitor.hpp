@@ -49,7 +49,7 @@ class ObjectWaiter : public CHeapObj<mtThread> {
   OopHandle      _vthread;
   ObjectMonitor* _monitor;
   uint64_t  _notifier_tid;
-  int         _recursions;
+  u4          _recursions;
   volatile TStates TState;
   volatile bool _notified;
   bool           _is_wait;
@@ -141,9 +141,6 @@ class ObjectWaiter : public CHeapObj<mtThread> {
 //   would make them immune to CAS-based invalidation from the _owner
 //   field.
 //
-// - TODO: The _recursions field should be of type int, or int32_t but not
-//   intptr_t. There's no reason to use a 64-bit type for this field
-//   in a 64-bit JVM.
 
 #define OM_CACHE_LINE_SIZE DEFAULT_CACHE_LINE_SIZE
 
@@ -186,7 +183,7 @@ class ObjectMonitor : public CHeapObj<mtObjectMonitor> {
   DEFINE_PAD_MINUS_SIZE(1, OM_CACHE_LINE_SIZE, sizeof(void* volatile) +
                         sizeof(volatile uint64_t));
   ObjectMonitor* _next_om;          // Next ObjectMonitor* linkage
-  volatile intx _recursions;        // recursion count, 0 for first entry
+  volatile u4 _recursions;       // recursion count, 0 for first entry
   ObjectWaiter* volatile _entry_list;  // Threads blocked on entry or reentry.
                                        // The list is actually composed of wait-nodes,
                                        // acting as proxies for Threads.
@@ -322,8 +319,7 @@ class ObjectMonitor : public CHeapObj<mtObjectMonitor> {
 
   int       contentions() const;
   void      add_to_contentions(int value);
-  intx      recursions() const                                         { return _recursions; }
-  void      set_recursions(size_t recursions);
+  void      set_recursions(u4 recursions);
   void      increment_recursions(JavaThread* current);
 
   // JVM/TI GetObjectMonitorUsage() needs this:
@@ -386,7 +382,7 @@ class ObjectMonitor : public CHeapObj<mtObjectMonitor> {
   void      print_on(outputStream* st) const;
 
   // Use the following at your own risk
-  intx      complete_exit(JavaThread* current);
+  u4        complete_exit(JavaThread* current);
 
  private:
   void      add_to_entry_list(JavaThread* current, ObjectWaiter* node);

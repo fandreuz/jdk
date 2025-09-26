@@ -1263,7 +1263,7 @@ class ReleaseJavaMonitorsClosure: public MonitorClosure {
  public:
   ReleaseJavaMonitorsClosure(JavaThread* thread) : _thread(thread) {}
   void do_monitor(ObjectMonitor* mid) {
-    intx rec = mid->complete_exit(_thread);
+    u4 rec = mid->complete_exit(_thread);
     _thread->dec_held_monitor_count(rec + 1);
   }
 };

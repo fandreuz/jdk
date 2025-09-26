@@ -473,7 +473,7 @@ bool ObjectMonitor::spin_enter(JavaThread* current) {
   // we forgo posting JVMTI events and firing DTRACE probes.
   if (try_spin(current)) {
     assert(has_owner(current), "must be current: owner=" INT64_FORMAT, owner_raw());
-    assert(_recursions == 0, "must be 0: recursions=%zd", _recursions);
+    assert(_recursions == 0, "must be 0: recursions=%u", _recursions);
     assert_mark_word_consistency();
     return true;
   }
@@ -1635,11 +1635,11 @@ void ObjectMonitor::exit_epilog(JavaThread* current, ObjectWaiter* Wakee) {
 
 // Exits the monitor returning recursion count. _owner should
 // be set to current's owner_id, i.e. no ANONYMOUS_OWNER allowed.
-intx ObjectMonitor::complete_exit(JavaThread* current) {
+u4 ObjectMonitor::complete_exit(JavaThread* current) {
   assert(InitDone, "Unexpectedly not initialized");
   guarantee(has_owner(current), "complete_exit not owner");
 
-  intx save = _recursions; // record the old recursion count
+  u4 save = _recursions;   // record the old recursion count
   _recursions = 0;         // set the recursion level to be 0
   exit(current);           // exit the monitor
   guarantee(!has_owner(current), "invariant");
@@ -1813,7 +1813,7 @@ void ObjectMonitor::wait(jlong millis, bool interruptible, TRAPS) {
   add_waiter(&node);
   Thread::SpinRelease(&_wait_set_lock);
 
-  intx save = _recursions;     // record the old recursion count
+  u4 save = _recursions;       // record the old recursion count
   _waiters++;                  // increment the number of waiters
   _recursions = 0;             // set the recursion level to be 1
   exit(current);               // exit the monitor
@@ -1949,7 +1949,7 @@ void ObjectMonitor::wait(jlong millis, bool interruptible, TRAPS) {
   current->set_current_waiting_monitor(nullptr);
 
   guarantee(_recursions == 0, "invariant");
-  int relock_count = JvmtiDeferredUpdates::get_and_reset_relock_count_after_wait(current);
+  u4 relock_count = JvmtiDeferredUpdates::get_and_reset_relock_count_after_wait(current);
   _recursions =   save          // restore the old recursion count
                 + relock_count; //  increased by the deferred relock count
   current->inc_held_monitor_count(relock_count); // Deopt never entered these counts.
@@ -2573,8 +2573,8 @@ void ObjectMonitor::Initialize2() {
 void ObjectMonitor::print_on(outputStream* st) const {
   // The minimal things to print for markWord printing, more can be added for debugging and logging.
   st->print("{contentions=0x%08x,waiters=0x%08x"
-            ",recursions=%zd,owner=" INT64_FORMAT "}",
-            contentions(), waiters(), recursions(),
+            ",recursions=%u,owner=" INT64_FORMAT "}",
+            contentions(), waiters(), _recursions,
             owner_raw());
 }
 void ObjectMonitor::print() const { print_on(tty); }
@@ -2626,7 +2626,7 @@ void ObjectMonitor::print_debug_style_on(outputStream* st) const {
   st->print_cr("    [%d] = '\\0'", (int)sizeof(_pad_buf1) - 1);
   st->print_cr("  }");
   st->print_cr("  _next_om = " INTPTR_FORMAT, p2i(next_om()));
-  st->print_cr("  _recursions = %zd", _recursions);
+  st->print_cr("  _recursions = %u", _recursions);
   st->print_cr("  _entry_list = " INTPTR_FORMAT, p2i(_entry_list));
   st->print_cr("  _entry_list_tail = " INTPTR_FORMAT, p2i(_entry_list_tail));
   st->print_cr("  _succ = " INT64_FORMAT, successor());

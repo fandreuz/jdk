@@ -45,9 +45,9 @@ void JvmtiDeferredUpdates::inc_relock_count_after_wait(JavaThread* thread) {
   thread->deferred_updates()->inc_relock_count_after_wait();
 }
 
-int JvmtiDeferredUpdates::get_and_reset_relock_count_after_wait(JavaThread* jt) {
+u4 JvmtiDeferredUpdates::get_and_reset_relock_count_after_wait(JavaThread* jt) {
   JvmtiDeferredUpdates* updates = jt->deferred_updates();
-  int result = 0;
+  u4 result = 0;
   if (updates != nullptr) {
     result = updates->get_and_reset_relock_count_after_wait();
     if (updates->count() == 0) {

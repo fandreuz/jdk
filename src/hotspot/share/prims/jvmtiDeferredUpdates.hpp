@@ -113,7 +113,7 @@ private:
 class JvmtiDeferredUpdates : public CHeapObj<mtCompiler> {
 
   // Relocking has to be deferred if the lock owning thread is currently waiting on the monitor.
-  int _relock_count_after_wait;
+  u4 _relock_count_after_wait;
 
   // Deferred updates of locals, expressions, and monitors
   GrowableArray<jvmtiDeferredLocalVariableSet*> _deferred_locals_updates;
@@ -122,8 +122,8 @@ class JvmtiDeferredUpdates : public CHeapObj<mtCompiler> {
     _relock_count_after_wait++;
   }
 
-  int get_and_reset_relock_count_after_wait() {
-    int result = _relock_count_after_wait;
+  u4 get_and_reset_relock_count_after_wait() {
+    u4 result = _relock_count_after_wait;
     _relock_count_after_wait = 0;
     return result;
   }
@@ -145,7 +145,7 @@ public:
   }
 
   // Relocking has to be deferred if the lock owning thread is currently waiting on the monitor.
-  static int  get_and_reset_relock_count_after_wait(JavaThread* jt);
+  static u4   get_and_reset_relock_count_after_wait(JavaThread* jt);
   static void inc_relock_count_after_wait(JavaThread* thread);
 
   // Delete deferred updates for the compiled frame with id 'frame_id' on the
@@ -154,8 +154,10 @@ public:
   static void delete_updates_for_frame(JavaThread* jt, intptr_t* frame_id);
 
   // Number of deferred updates
-  int count() const {
-    return _deferred_locals_updates.length() + (_relock_count_after_wait > 0 ? 1 : 0);
+  u4 count() const {
+    int dlu_length = _deferred_locals_updates.length();
+    assert(dlu_length > 0, "sanity");
+    return (u4) dlu_length + (_relock_count_after_wait > 0 ? 1 : 0);
   }
 };
 
