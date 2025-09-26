@@ -183,7 +183,7 @@ class ObjectMonitor : public CHeapObj<mtObjectMonitor> {
   DEFINE_PAD_MINUS_SIZE(1, OM_CACHE_LINE_SIZE, sizeof(void* volatile) +
                         sizeof(volatile uint64_t));
   ObjectMonitor* _next_om;          // Next ObjectMonitor* linkage
-  volatile u4 _recursions;       // recursion count, 0 for first entry
+  volatile u4 _recursions;          // recursion count, 0 for first entry
   ObjectWaiter* volatile _entry_list;  // Threads blocked on entry or reentry.
                                        // The list is actually composed of wait-nodes,
                                        // acting as proxies for Threads.

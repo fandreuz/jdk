@@ -473,7 +473,7 @@ bool ObjectMonitor::spin_enter(JavaThread* current) {
   // we forgo posting JVMTI events and firing DTRACE probes.
   if (try_spin(current)) {
     assert(has_owner(current), "must be current: owner=" INT64_FORMAT, owner_raw());
-    assert(_recursions == 0, "must be 0: recursions=%u", _recursions);
+    assert(_recursions == 0, "must be 0: recursions=" UINT32_FORMAT, _recursions);
     assert_mark_word_consistency();
     return true;
   }
@@ -2573,7 +2573,7 @@ void ObjectMonitor::Initialize2() {
 void ObjectMonitor::print_on(outputStream* st) const {
   // The minimal things to print for markWord printing, more can be added for debugging and logging.
   st->print("{contentions=0x%08x,waiters=0x%08x"
-            ",recursions=%u,owner=" INT64_FORMAT "}",
+            ",recursions=" UINT32_FORMAT ",owner=" INT64_FORMAT "}",
             contentions(), waiters(), _recursions,
             owner_raw());
 }
@@ -2626,7 +2626,7 @@ void ObjectMonitor::print_debug_style_on(outputStream* st) const {
   st->print_cr("    [%d] = '\\0'", (int)sizeof(_pad_buf1) - 1);
   st->print_cr("  }");
   st->print_cr("  _next_om = " INTPTR_FORMAT, p2i(next_om()));
-  st->print_cr("  _recursions = %u", _recursions);
+  st->print_cr("  _recursions = " UINT32_FORMAT, _recursions);
   st->print_cr("  _entry_list = " INTPTR_FORMAT, p2i(_entry_list));
   st->print_cr("  _entry_list_tail = " INTPTR_FORMAT, p2i(_entry_list_tail));
   st->print_cr("  _succ = " INT64_FORMAT, successor());
