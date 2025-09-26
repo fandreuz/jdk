@@ -156,7 +156,7 @@ public:
   // Number of deferred updates
   u4 count() const {
     int dlu_length = _deferred_locals_updates.length();
-    assert(dlu_length > 0, "sanity");
+    assert(dlu_length >= 0, "sanity");
     return (u4) dlu_length + (_relock_count_after_wait > 0 ? 1 : 0);
   }
 };
