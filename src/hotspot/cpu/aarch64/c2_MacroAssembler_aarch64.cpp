@@ -276,7 +276,7 @@ void C2_MacroAssembler::fast_lock_lightweight(Register obj, Register box, Regist
     br(Assembler::NE, slow_path);
 
     // Recursive.
-    increment(recursions_address, 1);
+    incrementw(recursions_address, 1);
 
     bind(monitor_locked);
     if (UseObjectMonitorTable) {
@@ -407,12 +407,12 @@ void C2_MacroAssembler::fast_unlock_lightweight(Register obj, Register box, Regi
     Label not_recursive;
 
     // Check if recursive.
-    ldr(t2_recursions, Address(t1_monitor, ObjectMonitor::recursions_offset()));
+    ldrw(t2_recursions, Address(t1_monitor, ObjectMonitor::recursions_offset()));
     cbz(t2_recursions, not_recursive);
 
     // Recursive unlock.
     sub(t2_recursions, t2_recursions, 1u);
-    str(t2_recursions, Address(t1_monitor, ObjectMonitor::recursions_offset()));
+    strw(t2_recursions, Address(t1_monitor, ObjectMonitor::recursions_offset()));
     // Set flag == EQ
     cmp(t2_recursions, t2_recursions);
     b(unlocked);

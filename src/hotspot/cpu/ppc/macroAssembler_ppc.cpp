@@ -2813,14 +2813,14 @@ void MacroAssembler::compiler_fast_lock_lightweight_object(ConditionRegister fla
     // Recursive.
     if (!UseObjectMonitorTable) {
       assert_different_registers(tmp1, owner_addr);
-      ld(tmp1, in_bytes(ObjectMonitor::recursions_offset() - ObjectMonitor::owner_offset()), owner_addr);
+      lwz(tmp1, in_bytes(ObjectMonitor::recursions_offset() - ObjectMonitor::owner_offset()), owner_addr);
       addi(tmp1, tmp1, 1);
-      std(tmp1, in_bytes(ObjectMonitor::recursions_offset() - ObjectMonitor::owner_offset()), owner_addr);
+      stw(tmp1, in_bytes(ObjectMonitor::recursions_offset() - ObjectMonitor::owner_offset()), owner_addr);
     } else {
       assert_different_registers(tmp2, monitor);
-      ld(tmp2, in_bytes(ObjectMonitor::recursions_offset()), monitor);
+      lwz(tmp2, in_bytes(ObjectMonitor::recursions_offset()), monitor);
       addi(tmp2, tmp2, 1);
-      std(tmp2, in_bytes(ObjectMonitor::recursions_offset()), monitor);
+      stz(tmp2, in_bytes(ObjectMonitor::recursions_offset()), monitor);
     }
 
     bind(monitor_locked);
@@ -2961,12 +2961,12 @@ void MacroAssembler::compiler_fast_unlock_lightweight_object(ConditionRegister f
     Label not_recursive;
 
     // Check if recursive.
-    ld(recursions, in_bytes(ObjectMonitor::recursions_offset()), monitor);
+    lwz(recursions, in_bytes(ObjectMonitor::recursions_offset()), monitor);
     addic_(recursions, recursions, -1);
     blt(CR0, not_recursive);
 
     // Recursive unlock.
-    std(recursions, in_bytes(ObjectMonitor::recursions_offset()), monitor);
+    stw(recursions, in_bytes(ObjectMonitor::recursions_offset()), monitor);
     crorc(CR0, Assembler::equal, CR0, Assembler::equal);
     b(unlocked);
 

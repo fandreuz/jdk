@@ -338,7 +338,7 @@
   nonstatic_field(ObjArrayKlass,               _element_klass,                                Klass*)                                \
                                                                                                                                      \
   volatile_nonstatic_field(ObjectMonitor,      _owner,                                        int64_t)                               \
-  volatile_nonstatic_field(ObjectMonitor,      _recursions,                                   intptr_t)                              \
+  volatile_nonstatic_field(ObjectMonitor,      _recursions,                                   u4)                                    \
   volatile_nonstatic_field(ObjectMonitor,      _entry_list,                                   ObjectWaiter*)                         \
   volatile_nonstatic_field(ObjectMonitor,      _succ,                                         int64_t)                               \
                                                                                                                                      \

@@ -354,7 +354,7 @@ void C2_MacroAssembler::fast_lock_lightweight(Register obj, Register box, Regist
     jccb(Assembler::notEqual, slow_path);
 
     // Recursive.
-    increment(recursions_address);
+    incrementl(recursions_address);
 
     bind(monitor_locked);
   }
@@ -518,7 +518,7 @@ void C2_MacroAssembler::fast_unlock_lightweight(Register obj, Register reg_rax, 
     Label recursive;
 
     // Check if recursive.
-    cmpptr(recursions_address, 0);
+    cmpl(recursions_address, 0);
     jccb(Assembler::notZero, recursive);
 
     // Set owner to null.
@@ -548,7 +548,7 @@ void C2_MacroAssembler::fast_unlock_lightweight(Register obj, Register reg_rax, 
 
     // Recursive unlock.
     bind(recursive);
-    decrement(recursions_address);
+    decrementl(recursions_address);
   }
 
   bind(unlocked);

@@ -684,7 +684,7 @@
   volatile_nonstatic_field(ObjectMonitor,      _next_om,                                      ObjectMonitor*)                        \
   nonstatic_field(ObjectMonitor,               _contentions,                                  int)                                   \
   volatile_nonstatic_field(ObjectMonitor,      _waiters,                                      int)                                   \
-  volatile_nonstatic_field(ObjectMonitor,      _recursions,                                   intx)                                  \
+  volatile_nonstatic_field(ObjectMonitor,      _recursions,                                   u4)                                    \
   nonstatic_field(BasicObjectLock,             _lock,                                         BasicLock)                             \
   nonstatic_field(BasicObjectLock,             _obj,                                          oop)                                   \
   static_field(ObjectSynchronizer,             _in_use_list,                                  MonitorList)                           \

@@ -6601,7 +6601,7 @@ void MacroAssembler::compiler_fast_unlock_lightweight_object(Register obj, Regis
     const Register recursions = tmp2;
 
     // Check if recursive.
-    load_and_test_long(recursions, recursions_address);
+    load_and_test_int(recursions, recursions_address);
     z_bre(not_recursive); // if 0 then jump, it's not recursive locking
 
     // Recursive unlock
