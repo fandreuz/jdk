@@ -319,7 +319,7 @@ class ObjectMonitor : public CHeapObj<mtObjectMonitor> {
 
   int       contentions() const;
   void      add_to_contentions(int value);
-  void      set_recursions(u4 recursions);
+  void      set_recursions(size_t recursions);
   void      increment_recursions(JavaThread* current);
 
   // JVM/TI GetObjectMonitorUsage() needs this:

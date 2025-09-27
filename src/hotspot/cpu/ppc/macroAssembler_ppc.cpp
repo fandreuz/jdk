@@ -2820,7 +2820,7 @@ void MacroAssembler::compiler_fast_lock_lightweight_object(ConditionRegister fla
       assert_different_registers(tmp2, monitor);
       lwz(tmp2, in_bytes(ObjectMonitor::recursions_offset()), monitor);
       addi(tmp2, tmp2, 1);
-      stz(tmp2, in_bytes(ObjectMonitor::recursions_offset()), monitor);
+      stw(tmp2, in_bytes(ObjectMonitor::recursions_offset()), monitor);
     }
 
     bind(monitor_locked);

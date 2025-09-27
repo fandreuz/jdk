@@ -132,10 +132,11 @@ inline void ObjectMonitor::add_to_contentions(int value) {
   AtomicAccess::add(&_contentions, value);
 }
 
-inline void ObjectMonitor::set_recursions(u4 recursions) {
+inline void ObjectMonitor::set_recursions(size_t recursions) {
   assert(_recursions == 0, "must be");
   assert(has_owner(), "must be owned");
-  _recursions = recursions;
+  assert((u4) recursions == recursions, "must be");
+  _recursions = (u4) recursions;
 }
 
 inline void ObjectMonitor::increment_recursions(JavaThread* current) {
