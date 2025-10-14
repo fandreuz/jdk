@@ -1088,7 +1088,7 @@ void ObjectMonitor::reenter_internal(JavaThread* current, ObjectWaiter* currentN
   assert(current != nullptr, "invariant");
   assert(current->thread_state() != _thread_blocked, "invariant");
   assert(currentNode != nullptr, "invariant");
-  assert(currentNode->_thread == current, "invariant");
+  assert(currentNode->thread() == current, "invariant");
   assert(_waiters > 0, "invariant");
   assert_mark_word_consistency();
 
@@ -1369,8 +1369,8 @@ ObjectWaiter* ObjectMonitor::entry_list_tail(JavaThread* current) {
 
 void ObjectMonitor::unlink_after_acquire(JavaThread* current, ObjectWaiter* currentNode) {
   assert(has_owner(current), "invariant");
-  assert((!currentNode->is_vthread() && currentNode->thread() == current) ||
-         (currentNode->is_vthread() && currentNode->vthread() == current->vthread()), "invariant");
+  assert((currentNode->thread()  == current) ||
+         (currentNode->vthread() == current->vthread()), "invariant");
 
   // Check if we are unlinking the last element in the _entry_list.
   // This is by far the most common case.
@@ -1639,9 +1639,8 @@ void ObjectMonitor::exit_epilog(JavaThread* current, ObjectWaiter* Wakee) {
 
   oop vthread = nullptr;
   ParkEvent * Trigger;
-  if (!Wakee->is_vthread()) {
-    JavaThread* t = Wakee->thread();
-    assert(t != nullptr, "");
+  JavaThread* t = Wakee->thread();
+  if (t != nullptr) {
     Trigger = t->_ParkEvent;
     set_successor(t);
   } else {
@@ -1746,7 +1745,7 @@ static void vthread_monitor_waited_event(JavaThread* current, ObjectWaiter* node
   JRT_BLOCK
     if (event->should_commit()) {
       long timeout = java_lang_VirtualThread::timeout(current->vthread());
-      post_monitor_wait_event(event, node->_monitor, node->_notifier_tid, timeout, timed_out);
+      post_monitor_wait_event(event, node->monitor(), node->_notifier_tid, timeout, timed_out);
     }
     if (JvmtiExport::should_post_monitor_waited()) {
       // We mark this call in case of an upcall to Java while posting the event.
@@ -1754,7 +1753,7 @@ static void vthread_monitor_waited_event(JavaThread* current, ObjectWaiter* node
       // frame should not include processing callee arguments since there is no
       // actual callee (see nmethod::preserve_callee_argument_oops()).
       ThreadOnMonitorWaitedEvent tmwe(current);
-      JvmtiExport::vthread_post_monitor_waited(current, node->_monitor, timed_out);
+      JvmtiExport::vthread_post_monitor_waited(current, node->monitor(), timed_out);
     }
   JRT_BLOCK_END
   current->frame_anchor()->clear();
@@ -2508,26 +2507,14 @@ bool ObjectMonitor::try_spin(JavaThread* current) {
 // -----------------------------------------------------------------------------
 // wait_set management ...
 
-ObjectWaiter::ObjectWaiter(JavaThread* current) {
-  _next     = nullptr;
-  _prev     = nullptr;
-  _thread   = current;
-  _monitor  = nullptr;
-  _notifier_tid = 0;
-  _recursions = 0;
-  TState    = TS_RUN;
-  _notified = false;
-  _is_wait  = false;
-  _at_reenter = false;
-  _interrupted = false;
-  _do_timed_park = false;
-  _active   = false;
+ObjectWaiter::ObjectWaiter(JavaThread* current) : _thread(current) {
+  assert(current != nullptr, "must be");
 }
 
-ObjectWaiter::ObjectWaiter(oop vthread, ObjectMonitor* mon) : ObjectWaiter(nullptr) {
+ObjectWaiter::ObjectWaiter(oop vthread, ObjectMonitor* mon) :
+  _monitor(mon),
+  _vthread(OopHandle(JavaThread::thread_oop_storage(), vthread)) {
   assert(oopDesc::is_oop(vthread), "");
-  _vthread = OopHandle(JavaThread::thread_oop_storage(), vthread);
-  _monitor = mon;
 }
 
 ObjectWaiter::~ObjectWaiter() {

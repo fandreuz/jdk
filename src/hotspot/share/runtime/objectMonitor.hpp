@@ -42,35 +42,44 @@ class ContinuationWrapper;
 
 
 class ObjectWaiter : public CHeapObj<mtThread> {
+ private:
+  union {
+    JavaThread*    const  _thread;
+    ObjectMonitor* const _monitor;
+  };
+  OopHandle      _vthread;
+
  public:
   enum TStates : uint8_t { TS_UNDEF, TS_READY, TS_RUN, TS_WAIT, TS_ENTER };
-  ObjectWaiter* volatile _next;
-  ObjectWaiter* volatile _prev;
-  JavaThread*     _thread;
-  OopHandle      _vthread;
-  ObjectMonitor* _monitor;
-  uint64_t  _notifier_tid;
-  int         _recursions;
-  volatile TStates TState;
-  volatile bool _notified;
-  bool           _is_wait;
-  bool        _at_reenter;
-  bool       _interrupted;
-  bool     _do_timed_park;
-  bool            _active;    // Contention monitoring is enabled
+
+  ObjectWaiter* volatile _next = nullptr;
+  ObjectWaiter* volatile _prev = nullptr;
+  uint64_t  _notifier_tid      = 0;
+  int         _recursions      = 0;
+  volatile TStates TState      = TS_RUN;
+  volatile bool _notified      = false;
+  bool           _is_wait      = false;
+  bool        _at_reenter      = false;
+  bool       _interrupted      = false;
+  bool     _do_timed_park      = false;
+  // Contention monitoring is enabled
+  bool            _active      = false;
+
  public:
   ObjectWaiter(JavaThread* current);
   ObjectWaiter(oop vthread, ObjectMonitor* mon);
   ~ObjectWaiter();
-  JavaThread* thread()      const { return _thread; }
-  bool is_vthread()         const { return _thread == nullptr; }
+
+  bool is_vthread()         const { return !_vthread.is_empty(); }
+  oop vthread() const;
+  JavaThread* thread()      const { return is_vthread() ? nullptr  : _thread; }
+  ObjectMonitor* monitor()  const { return is_vthread() ? _monitor : nullptr; }
+
   uint8_t state()           const { return TState; }
-  ObjectMonitor* monitor()  const { return _monitor; }
   bool is_wait()            const { return _is_wait; }
   bool notified()           const { return _notified; }
   bool at_reenter()         const { return _at_reenter; }
   bool at_monitorenter()    const { return !_is_wait || _at_reenter || _notified; }
-  oop vthread() const;
   void wait_reenter_begin(ObjectMonitor *mon);
   void wait_reenter_end(ObjectMonitor *mon);
 
@@ -336,7 +345,7 @@ class ObjectMonitor : public CHeapObj<mtObjectMonitor> {
   int waiters() const;
   ObjectWaiter* first_waiter()                                         { return _wait_set; }
   ObjectWaiter* next_waiter(ObjectWaiter* o)                           { return o->_next; }
-  JavaThread* thread_of_waiter(ObjectWaiter* o)                        { return o->_thread; }
+  JavaThread* thread_of_waiter(ObjectWaiter* o)                        { return o->thread(); }
 
   ObjectMonitor(oop object);
   ~ObjectMonitor();
